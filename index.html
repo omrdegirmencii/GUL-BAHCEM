@@ -3,95 +3,102 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>♥</title>
+  <title>Romantik Sayfa</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #f0f0f0, #ffe6f0);
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #f0f4ff, #e6e6e6);
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      overflow: hidden;
+    }
+
+    .container {
+      background-color: #ffffffcc;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      text-align: center;
+      max-width: 90%;
+      width: 800px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #333;
     }
 
     img {
-      max-width: 90%;
-      border-radius: 20px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-      transition: opacity 0.6s ease;
-      z-index: 1;
-      position: relative;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 10px auto;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
     }
 
-    .heart {
-      position: fixed;
-      top: -50px;
-      color: #ff2d55;
-      font-size: 30px;
-      animation: fall linear;
-      pointer-events: none;
-      z-index: 2;
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      background-color: #0077ff;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
-    @keyframes fall {
-      to {
-        transform: translateY(110vh);
-        opacity: 0;
+    button:hover {
+      background-color: #005fd6;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      button {
+        font-size: 14px;
+        padding: 8px 16px;
       }
     }
   </style>
 </head>
 <body>
 
-  <img id="image" src="" alt="">
+  <div class="container">
+    <h1>Romantik Sayfana Hoş Geldin!</h1>
+    <img src="https://imgur.com/DnsEGIe.jpg" alt="Romantik Resim 1">
+    <img src="https://imgur.com/LhY6CfM.jpg" alt="Romantik Resim 2">
+    <img src="https://imgur.com/VBgwxm6.jpg" alt="Romantik Resim 3">
+    <!-- Daha fazla resim eklemek için buraya linkleri yapıştırın -->
+    <button onclick="changeImage()">Yeni Resim Göster</button>
+  </div>
 
-  <audio id="music" autoplay loop>
-    <source src="https://voca.ro/11FZneGZxNPw" type="audio/mpeg">
+  <audio autoplay loop>
+    <source src="https://voca.ro/11FZneGZxNPw" type="audio/mp3">
+    Your browser does not support the audio element.
   </audio>
 
   <script>
-    const resimler = [
-      "https://i.imgur.com/DnsEGIe.jpg",
-      "https://i.imgur.com/LhY6CfM.jpg",
-      "https://i.imgur.com/VBgwxm6.jpg",
-      "https://i.imgur.com/oH53EKs.jpg",
-      "https://i.imgur.com/L6IezMM.jpg"
-      // diğer linkleri de buraya eklersin
+    const images = [
+      "https://imgur.com/DnsEGIe.jpg",
+      "https://imgur.com/LhY6CfM.jpg",
+      "https://imgur.com/VBgwxm6.jpg"
     ];
 
-    const imageElement = document.getElementById("image");
+    const imageElement = document.querySelector("img");
 
     function changeImage() {
-      imageElement.style.opacity = 0;
-      setTimeout(() => {
-        const randomIndex = Math.floor(Math.random() * resimler.length);
-        imageElement.src = resimler[randomIndex];
-      }, 300);
-      setTimeout(() => {
-        imageElement.style.opacity = 1;
-      }, 400);
+      const randomIndex = Math.floor(Math.random() * images.length);
+      imageElement.src = images[randomIndex];
     }
-
-    changeImage();
-    setInterval(changeImage, 5000);
-
-    // Kalp yağmuru
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
-      document.body.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 5000);
-    }
-
-    setInterval(createHeart, 300);
   </script>
 
 </body>
