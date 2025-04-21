@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>♥</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f0f0f0, #ffe6f0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    img {
+      max-width: 90%;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      transition: opacity 0.6s ease;
+      z-index: 1;
+      position: relative;
+    }
+
+    .heart {
+      position: fixed;
+      top: -50px;
+      color: #ff2d55;
+      font-size: 30px;
+      animation: fall linear;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <img id="image" src="" alt="">
+
+  <audio id="music" autoplay loop>
+    <source src="https://voca.ro/11FZneGZxNPw" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const resimler = [
+      "https://i.imgur.com/DnsEGIe.jpg",
+      "https://i.imgur.com/LhY6CfM.jpg",
+      "https://i.imgur.com/VBgwxm6.jpg",
+      "https://i.imgur.com/oH53EKs.jpg",
+      "https://i.imgur.com/L6IezMM.jpg"
+      // diğer linkleri de buraya eklersin
+    ];
+
+    const imageElement = document.getElementById("image");
+
+    function changeImage() {
+      imageElement.style.opacity = 0;
+      setTimeout(() => {
+        const randomIndex = Math.floor(Math.random() * resimler.length);
+        imageElement.src = resimler[randomIndex];
+      }, 300);
+      setTimeout(() => {
+        imageElement.style.opacity = 1;
+      }, 400);
+    }
+
+    changeImage();
+    setInterval(changeImage, 5000);
+
+    // Kalp yağmuru
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+
+</body>
+</html>
